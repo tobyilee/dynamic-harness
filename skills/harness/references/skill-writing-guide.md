@@ -258,6 +258,15 @@ assertion 기반 채점 결과:
 
 서브에이전트 완료 알림에서 `total_tokens`와 `duration_ms`를 즉시 저장한다. 이 데이터는 알림 시점에만 접근 가능하고 이후 복구 불가.
 
+### 7-4. 워크플로우 모드에서의 스키마
+
+eval이 워크플로우 모드(`references/workflow-mode.md`)로 실행되면 위 세 스키마는 수기 관리 대상이 아니다:
+
+- `eval_metadata.json` / `grading.json` → `agent(..., { schema })`로 **도구 레이어에서 검증**(불일치 시 자동 재시도). 위의 "필드명 변형 금지" 경고가 구조적으로 불필요해진다.
+- `timing.json` → Workflow가 usage 통계를 **네이티브 반환**하므로 "알림 시점 즉시 캡처, 복구 불가" 수작업이 사라진다.
+
+상세 매핑은 `skill-testing-guide.md` §9 참조.
+
 ---
 
 ## 8. 스킬에 포함하지 않을 것

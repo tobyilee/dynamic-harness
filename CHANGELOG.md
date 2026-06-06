@@ -12,6 +12,8 @@
 - **`skill-testing-guide.md` §9: 워크플로우 모드 eval 하네스** — Phase 6 eval(with/baseline 동시 스폰·Grader/Comparator/Analyzer·Train-Test 반복)을 `pipeline` + `schema` + `budget`으로 표현. 수동 토큰 캡처·`claude -p` 자동화 핵을 1급 프리미티브로 대체 + 수작업↔프리미티브 매핑표
 - **`team-examples.md` 워크플로우 모드 변형 3종** — 예시 1(리서치 팬아웃/팬인 = `/deep-research` 패턴), 예시 3(웹툰 생성-검증, 재시도 상한을 JS 카운터로 강제), 예시 5(마이그레이션 감독자, `worktree` 격리 + 대규모 팬아웃 = 팀 모드 대비 최대 우위 사례)
 - **Template D Phase 1: `args` 유효성 검증 단계** — 과거 날짜·누락 필드를 오케스트레이터가 거부/되묻기 (파일럿에서 과거 목표일이 조용히 우회된 실측 사례 반영)
+- **`qa-agent-guide.md` §3-5: 워크플로우 모드 매핑** — §2의 4개 교차검증 = `parallel` 독립 차원, incremental QA = `pipeline`(배리어 없음) 매핑 + 스케치
+- **`skill-writing-guide.md` §7-4: 워크플로우 모드에서의 스키마** — eval JSON 3종(metadata/grading/timing)이 Workflow `schema` 검증 + 네이티브 usage 반환으로 대체됨을 명시 (§9 매핑 연결)
 - 신규 에이전트/스킬 생성 전 중복 검토 단계 (Phase 3-0, Phase 4-0)
 - `references/agent-design-patterns.md` "에이전트 재사용 설계" 섹션
 - `references/skill-writing-guide.md` §9 "스킬 재사용 설계"
@@ -20,6 +22,7 @@
 - **Phase 2-1 실행 모드 의사결정 순서** — 규모·반복성 체크를 1순위로 전환(대규모 팬아웃·반복·재개는 워크플로우 우선). "에이전트 팀이 최우선 기본값"을 **소규모 협업**으로 한정 — 팀은 "세션당 1팀·토큰 선형 증가" 제약으로 대규모 팬아웃에 부적합
 - **모델 설정 정책 완화** — `model: "opus"` 전면 강제 → **핵심 단계 opus + 단순·기계적 단계 하위 티어 허용**. 멀티 에이전트 토큰 비용(chat 대비 ~15배)을 고가치 단계에 집중. 티어 완화는 **비용 근거로만** 결정하고 품질 영향은 Phase 6-3 With/Without A/B로 도메인별 검증한 뒤 적용 (혼합 티어 품질 향상 주장은 검증에서 폐기되어 미인용)
 - **산출물 체크리스트** — 실행 모드 항목에 워크플로우 추가(폴백 경로 명시), 모델 항목을 티어 설정으로 갱신
+- **`docs/experimental-dependency.md`** — 의존성 그래프에 Workflow 도구를 병렬(역시 research preview) 경로로 추가, Scenario C에 워크플로우 폴백 명시. "GA 탈출이 아닌 2-프리뷰 회복탄력성"으로 정직하게 프레이밍(규제 산업 컴플라이언스엔 도움 안 됨 명기). Last updated 2026-06-06
 - Phase 선택 매트릭스에 3-0/4-0 명시
 - Phase 2-3에 재사용 검토 단계 포인터 추가
 - 산출물 체크리스트에 재사용 검토 항목 2개 추가

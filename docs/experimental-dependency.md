@@ -1,6 +1,6 @@
 # Experimental Flag Dependency
 
-> **Status:** Active · **Owner:** revfactory · **Last updated:** 2026-04-18 · **SLA:** See [Monitoring Commitment](#monitoring-commitment)
+> **Status:** Active · **Owner:** revfactory · **Last updated:** 2026-06-06 · **SLA:** See [Monitoring Commitment](#monitoring-commitment)
 
 This document explains why `harness` requires `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1`, the three plausible futures of that flag, and what this repository will do in each case — with time-boxed commitments so enterprise adopters can plan against it.
 
@@ -40,19 +40,23 @@ The design rationale and roadmap for this flag live in three Anthropic Engineeri
 ## Dependency Graph
 
 ```
-harness (v1.2.0)
-  └── Agent Teams API (Claude Code)
-        ├── TeamCreate            ← EXPERIMENTAL_AGENT_TEAMS=1
-        ├── SendMessage           ← EXPERIMENTAL_AGENT_TEAMS=1
-        ├── TaskCreate            ← EXPERIMENTAL_AGENT_TEAMS=1
-        └── Agent (invoke)        ← GA (flag-independent)
-              └── Anthropic Roadmap
-                    ├── Scenario A: Flag removed (GA promotion)
-                    ├── Scenario B: Managed Agents GA (parallel path)
-                    └── Scenario C: Breaking signature change
+harness (v1.2.0+)
+  ├── Agent Teams API (Claude Code)          ← EXPERIMENTAL_AGENT_TEAMS=1 (preview)
+  │     ├── TeamCreate
+  │     ├── SendMessage
+  │     ├── TaskCreate
+  │     └── Agent (invoke)                    ← GA (flag-independent)
+  ├── Workflow tool (4th exec mode, opt-in)   ← research preview, v2.1.154+
+  │     └── agent() / pipeline() / parallel()    (own primitives — NOT the agent-teams flag)
+  └── Anthropic Roadmap
+        ├── Scenario A: Agent Teams flag removed (GA promotion)
+        ├── Scenario B: Managed Agents GA (parallel path)
+        └── Scenario C: Breaking change in EITHER preview surface
 ```
 
 **Read this graph top-down:** harness depends on Agent Teams API, which depends on a single Experimental flag, which depends on Anthropic's own roadmap. If any upstream node changes, this repository is on the hook to adapt within the SLA below.
+
+**Dependency diversification (Workflow execution mode).** harness can now also generate orchestrators on the **Workflow tool** (the 4th execution mode — see `skills/harness/references/workflow-mode.md`), whose primitives (`agent()` / `pipeline()` / `parallel()`) are **independent of `EXPERIMENTAL_AGENT_TEAMS`**. This reduces single-point exposure: if the agent-teams surface breaks (Scenario C), workflow mode is a fallback path, and vice versa. It does **not** remove preview risk — the Workflow tool is itself a research preview (v2.1.154+). This is *two-preview resilience, not a GA escape*. In particular, it does **not** help the regulated-industry case in [Q1](#q1-were-in-a-regulated-industry-finance-healthcare-public-sector-and-cant-enable-experimental-flags-in-production-how-do-we-adopt-harness) (a preview feature is still a preview feature); the design-time-only workaround there remains the compliance answer.
 
 ---
 
@@ -107,6 +111,8 @@ Each scenario lists the **detection trigger** (how we will know it happened), th
 | **T+72h** | If the change is non-trivial (affects harness's public contract), publish a short notice on the repo Discussions tab + X. Otherwise, CHANGELOG entry is sufficient. | Discussions post (conditional) |
 
 **Adopter impact:** Existing pinned users on the prior Claude Code version are unaffected. Users on latest get a same-week patch.
+
+> **Fallback (Workflow execution mode):** if the break is in the Agent Teams surface specifically, harness's generated orchestrators can fall back to the Workflow-tool mode (independent primitives), and vice versa. Because **neither surface is GA**, a simultaneous break in *both* previews is the residual risk this fallback does not cover.
 
 ---
 
