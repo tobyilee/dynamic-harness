@@ -14,6 +14,7 @@
 6. [반복 개선 루프](#6-반복-개선-루프)
 7. [Description 트리거 검증](#7-description-트리거-검증)
 8. [워크스페이스 구조](#8-워크스페이스-구조)
+9. [워크플로우 모드 eval 하네스](#9-워크플로우-모드-eval-하네스)
 
 ---
 
@@ -305,3 +306,43 @@ description 최적화가 필요한 경우:
 - eval 디렉토리는 숫자가 아닌 **서술적 이름** 사용 (예: `eval-multi-page-table-extraction`)
 - 각 iteration은 독립 디렉토리에 보존 (이전 iteration 덮어쓰기 금지)
 - `_workspace/`는 삭제하지 않음 — 사후 검증 및 감사 추적용
+
+---
+
+## 9. 워크플로우 모드 eval 하네스
+
+§3·§5·§7의 eval 절차는 Workflow 도구(`references/workflow-mode.md`)가 없던 시절의 **수작업 오케스트레이션**이다. eval은 매 하네스 빌드마다 반복되고, **N개 프롬프트 × 2개 구성(with/baseline) × M개 assertion × 반복 iteration**으로 팬아웃하며, 채점은 결정적 스키마를 따른다 — 워크플로우 모드의 정확한 적용 대상이다.
+
+### 9-1. 수작업 → 프리미티브 매핑
+
+| 현재 (수작업) | 워크플로우 프리미티브 |
+|--------------|---------------------|
+| §3-1 with/baseline "동시 스폰" | `parallel([() => runWith(p), () => runBaseline(p)])` |
+| §3-3 알림에서 `total_tokens`/`duration_ms` "즉시 캡처, 복구 불가" | Workflow가 usage 통계를 **네이티브 반환** — 수동 캡처 불필요 |
+| §4-4 / skill-writing §7 `grading.json` 필드명 강제 | `agent(..., { schema: GRADING_SCHEMA })` — 도구 레이어가 검증, 불일치 시 자동 재시도 |
+| §5 Grader / Comparator / Analyzer | 단계별 `agent()` 호출 (어드버서리얼 검증 / 블라인드 비교 / 패턴 분석) |
+| §7-3 `claude -p` 자동화 + Train/Test 5회 반복 | `budget`/loop 패턴으로 결정적 표현 |
+
+### 9-2. eval 파이프라인 스케치
+
+```js
+// runWith/runBaseline = agent() 래퍼 (스킬 유/무로 같은 프롬프트 실행)
+// 프롬프트별로 독립 통과 — 배리어 없음
+const results = (await pipeline(evalPrompts,
+  p => parallel([() => runWith(p, skillPath), () => runBaseline(p)]),                       // 동시 실행
+  ([withOut, baseOut], p) => agent(gradePrompt(p, withOut, baseOut), { schema: GRADING_SCHEMA }),  // Grader
+  graded => agent(comparePrompt(graded), { schema: COMPARATOR_SCHEMA }))                    // 블라인드 비교
+).filter(Boolean)
+const winRate = results.filter(r => r.verdict === 'with-better').length / results.length
+```
+
+각 `agent()`가 `_workspace/iteration-N/eval-{name}/`에 산출물을 기록(§8 구조 유지)하고, 스크립트는 통과율·비용만 변수로 들어 메인 컨텍스트를 가볍게 유지한다.
+
+### 9-3. 언제 워크플로우로, 언제 수작업으로
+
+| 상황 | 권장 |
+|------|------|
+| eval 프롬프트 2-3개, 1회성 검증 | 수작업(서브에이전트 직접 호출)로 충분 |
+| eval 프롬프트 다수 / 반복 iteration / Train-Test 최적화(§7-3) | **워크플로우 모드** — 반복성·팬아웃·결정적 채점이 모두 맞음 |
+
+> ⚠️ 한계: 워크플로우는 *오케스트레이션*을 결정화할 뿐, 채점의 *판단*(near-miss 트리거 정확도 등)은 여전히 모델 몫이다. Workflow 도구는 research preview이므로 §7-3 `claude -p` 폴백을 유지한다.

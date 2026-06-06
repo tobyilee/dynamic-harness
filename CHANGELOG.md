@@ -9,6 +9,9 @@
 - **`references/workflow-mode.md`** — 워크플로우 모드 가이드 (신규, ToC 포함): 모드 선택 루브릭(규모·반복성·재개), 프리미티브(`agent`/`pipeline`/`parallel`/`phase`/`schema`/`budget` + 캡·제약), 6패턴↔프리미티브 매핑, **Template D**(오케스트레이터 스킬 + 번들 스크립트), 품질 패턴(어드버서리얼 검증·loop-until-dry), 모델 티어링·토큰 예산, `_workspace/` 감사추적 유지법, 한계
 - **오케스트레이터 Template D 포인터** — `references/orchestrator-template.md`에 워크플로우 모드 템플릿(A/B/C와 같은 자리) 추가
 - **Phase 6-2: 워크플로우 모드 검증 항목** — `meta` 순수 리터럴, `phase()`↔`meta.phases` 일치, `parallel`/`pipeline` 배리어 적합성, 각 `agent()`의 `_workspace/` 기록 지시, Workflow 불가 시 폴백 경로 확인
+- **`skill-testing-guide.md` §9: 워크플로우 모드 eval 하네스** — Phase 6 eval(with/baseline 동시 스폰·Grader/Comparator/Analyzer·Train-Test 반복)을 `pipeline` + `schema` + `budget`으로 표현. 수동 토큰 캡처·`claude -p` 자동화 핵을 1급 프리미티브로 대체 + 수작업↔프리미티브 매핑표
+- **`team-examples.md` 워크플로우 모드 변형 3종** — 예시 1(리서치 팬아웃/팬인 = `/deep-research` 패턴), 예시 3(웹툰 생성-검증, 재시도 상한을 JS 카운터로 강제), 예시 5(마이그레이션 감독자, `worktree` 격리 + 대규모 팬아웃 = 팀 모드 대비 최대 우위 사례)
+- **Template D Phase 1: `args` 유효성 검증 단계** — 과거 날짜·누락 필드를 오케스트레이터가 거부/되묻기 (파일럿에서 과거 목표일이 조용히 우회된 실측 사례 반영)
 - 신규 에이전트/스킬 생성 전 중복 검토 단계 (Phase 3-0, Phase 4-0)
 - `references/agent-design-patterns.md` "에이전트 재사용 설계" 섹션
 - `references/skill-writing-guide.md` §9 "스킬 재사용 설계"
