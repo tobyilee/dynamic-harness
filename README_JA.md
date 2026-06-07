@@ -132,8 +132,10 @@ Set up a harness
 
 | モード | 説明 | 推奨ケース |
 |--------|------|------------|
-| **Agent Teams**（デフォルト） | TeamCreate + SendMessage + TaskCreate | エージェント2名以上、コラボレーションが必要な場合 |
+| **Agent Teams**（小規模コラボのデフォルト） | TeamCreate + SendMessage + TaskCreate | エージェント2名以上、コラボレーションが必要な場合 |
 | **サブエージェント** | Agentツール直接呼び出し | 単発タスク、エージェント間通信不要の場合 |
+| **ハイブリッド** | フェーズごとにモードを混在（例: 並列収集 → 合意統合） | フェーズごとに調整特性が異なる場合 |
+| **ワークフロー**（第4のモード） | 決定的な JS オーケストレーション — `agent()`/`pipeline()`/`parallel()`、スクリプトが制御フローを保持 | 数十〜数百エージェントのファンアウト、決定的シーケンス、再開可能 *(research preview, v2.1.154+)* |
 
 <p align="center">
   <img src="harness_team.png" alt="Harness Agent Team" width="500">

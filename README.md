@@ -129,8 +129,10 @@ Set up a harness
 
 | Mode | Description | Recommended For |
 |------|-------------|-----------------|
-| **Agent Teams** (default) | TeamCreate + SendMessage + TaskCreate | 2+ agents requiring collaboration |
+| **Agent Teams** (default for small-scale collaboration) | TeamCreate + SendMessage + TaskCreate | 2+ agents requiring collaboration |
 | **Subagents** | Direct Agent tool invocation | One-off tasks, no inter-agent communication needed |
+| **Hybrid** | Mix modes per phase (e.g., parallel collect → consensus integrate) | Phases with different coordination needs |
+| **Workflow** (4th mode) | Deterministic JS orchestration — `agent()` / `pipeline()` / `parallel()`; the script holds the control flow | Dozens-to-hundreds-of-agent fan-out, deterministic sequences, resumable runs *(research preview, v2.1.154+)* |
 
 <p align="center">
   <img src="harness_team.png" alt="Harness Agent Team" width="500">

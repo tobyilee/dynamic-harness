@@ -132,8 +132,10 @@ Claude Code에서 다음과 같이 트리거한다:
 
 | 모드 | 설명 | 권장 상황 |
 |------|------|----------|
-| **에이전트 팀** (기본) | TeamCreate + SendMessage + TaskCreate | 2개 이상 에이전트, 협업 필요 |
+| **에이전트 팀** (소규모 협업 기본) | TeamCreate + SendMessage + TaskCreate | 2개 이상 에이전트, 협업 필요 |
 | **서브 에이전트** | Agent 도구 직접 호출 | 단발성 작업, 통신 불필요 |
+| **하이브리드** | Phase별 모드 혼합 (예: 병렬 수집 → 합의 통합) | Phase마다 조율 특성이 다를 때 |
+| **워크플로우** (4번째 모드) | 결정적 JS 오케스트레이션 — `agent()`/`pipeline()`/`parallel()`, 스크립트가 제어 흐름 보유 | 수십~수백 에이전트 팬아웃, 결정적 시퀀스, 재개 *(research preview, v2.1.154+)* |
 
 <p align="center">
   <img src="harness_team.png" alt="Harness Agent Team" width="500">
