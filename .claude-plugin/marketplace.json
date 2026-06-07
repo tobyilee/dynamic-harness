@@ -1,9 +1,9 @@
 {
   "name": "harness-marketplace",
   "owner": {
-    "name": "revfactory",
-    "email": "revfactory@gmail.com",
-    "url": "https://github.com/revfactory"
+    "name": "tobyilee",
+    "email": "tobyilee@gmail.com",
+    "url": "https://github.com/tobyilee"
   },
   "plugins": [
     {

@@ -19,7 +19,7 @@
 claude plugin marketplace add tobyilee/dynamic-harness
 ```
 
-**What this does:** Registers the `harness` marketplace so Claude Code can discover plugins published by `revfactory`.
+**What this does:** Registers the `harness-marketplace` marketplace so Claude Code can discover plugins published by `tobyilee`.
 
 **Expected output:** `Added marketplace: tobyilee/dynamic-harness`
 
@@ -28,13 +28,13 @@ claude plugin marketplace add tobyilee/dynamic-harness
 ## Step 2 — Install the plugin and enable the Experimental flag (40 seconds)
 
 ```bash
-claude plugin install harness@harness
+claude plugin install harness@harness-marketplace
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 ```
 
 *(To persist the flag across shell sessions, append the `export` line to `~/.zshrc` or `~/.bashrc`.)*
 
-**What this does:** Installs the `harness` plugin from the `harness` marketplace, then enables Agent Teams — the Claude Code API harness uses to orchestrate multi-agent workflows. See [`docs/experimental-dependency.md`](./experimental-dependency.md) for why the flag is required.
+**What this does:** Installs the `harness` plugin from the `harness-marketplace` marketplace, then enables Agent Teams — the Claude Code API harness uses to orchestrate multi-agent workflows. See [`docs/experimental-dependency.md`](./experimental-dependency.md) for why the flag is required.
 
 **Failure FAQ #1 — `AGENT_TEAMS not found` / teams don't instantiate**
 **Cause:** Claude Code version is older than v2.x (Agent Teams was introduced in v2.0).
@@ -76,7 +76,7 @@ ls -la .claude/skills/
 
 **Failure FAQ #3 — "Nothing was generated" / directories are empty**
 **Cause:** The plugin is not actually installed or is not active in the current project.
-**Fix:** Run `claude plugin list`. If `harness@harness` is absent, repeat Step 2. If present but inactive, run `claude plugin enable harness@harness`, then repeat Step 3.
+**Fix:** Run `claude plugin list`. If `harness@harness-marketplace` is absent, repeat Step 2. If present but inactive, run `claude plugin enable harness@harness-marketplace`, then repeat Step 3.
 
 ---
 
@@ -111,7 +111,6 @@ At this point you should have:
 
 **Next reads:**
 - [`docs/experimental-dependency.md`](./experimental-dependency.md) — Why the flag, and what we'll do when it changes
-- [`revfactory/harness-100`](https://github.com/revfactory/harness-100) — Catalog of 100+ pre-built domain harnesses, if you'd rather clone than generate
-- [`revfactory/claude-code-harness`](https://github.com/revfactory/claude-code-harness) — The A/B test harness we used to measure +60% quality on 15 tasks
+- [`revfactory/claude-code-harness`](https://github.com/revfactory/claude-code-harness) — The A/B test harness used to measure +60% quality on 15 tasks (upstream Harness, not Dynamic-Harness)
 
 **If you hit something this guide didn't cover:** open an issue with the `quickstart-gap` label and include: (a) which step failed, (b) `claude --version`, (c) the exact error message. The SLA for quickstart-gap issues is **48 hours** to first response (see `CONTRIBUTING.md`).
