@@ -5,6 +5,7 @@
 ## [Unreleased]
 
 ### Changed
+- **README(EN/KO/JA) 프로젝트 정체성 리브랜드** — 프로젝트명을 **Dynamic-Harness**(Harness 포크 + 동적 Workflow 적용)로 표기. 타이틀·인트로에 포크 계보 설명을 앞세우고, 이후 this-project 서술 전반에 Dynamic-Harness 사용(개요·카테고리·공존·산출물·FAQ·헤딩 앵커). **upstream Harness의 +60% 연구·논문·harness-100은 "upstream Harness"로 명시 보존** — Apache 2.0 attribution + 정직성(포크가 +60%를 측정한 게 아님을 블록쿼트로 명시)
 - **README(EN/KO/JA) 실행 모드 표 동기화** — v1.3.0이 추가한 **워크플로우(4번째 모드)**와 기존 **하이브리드** 행을 사용자 대면 README에 노출(기존 표는 팀/서브 2개만 표기). "에이전트 팀"을 "소규모 협업 기본"으로 명확화
 
 ## [1.3.0] - 2026-06-07

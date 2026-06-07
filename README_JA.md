@@ -12,24 +12,26 @@
 </p>
 
 <p align="center">
-  <a href="#カテゴリー--harness-はどこに位置するか"><img src="https://img.shields.io/badge/Layer-L3%20Meta--Factory-orange" alt="Layer"></a>
-  <a href="#カテゴリー--harness-はどこに位置するか"><img src="https://img.shields.io/badge/Sub--layer-Team--Architecture%20Factory-teal" alt="Sub-layer"></a>
+  <a href="#カテゴリー--dynamic-harness-はどこに位置するか"><img src="https://img.shields.io/badge/Layer-L3%20Meta--Factory-orange" alt="Layer"></a>
+  <a href="#カテゴリー--dynamic-harness-はどこに位置するか"><img src="https://img.shields.io/badge/Sub--layer-Team--Architecture%20Factory-teal" alt="Sub-layer"></a>
   <a href="#"><img src="https://img.shields.io/badge/README-EN%20%7C%20KO%20%7C%20JA-lightgrey" alt="i18n"></a>
 </p>
 
-# Harness — Claude Code のためのチームアーキテクチャファクトリー
+# Dynamic-Harness — Harness + Claude Code Dynamic Workflows
 
 [English](README.md) | [한국어](README_KO.md) | **日本語**
 
-> **Harness は Claude Code 向けのチームアーキテクチャファクトリーです。** **「ハーネスを構成して」** (日本語) ·  **"build a harness for this project"** (English) · **"하네스 구성해줘"** (한국어) と伝えるだけで、プラグインがドメイン記述をエージェントチームとそのチームが使うスキルへと変換します — あらかじめ定義された 6 種類のチームアーキテクチャパターンから 1 つを選んで。
+> **Dynamic-Harness は [Harness](https://github.com/revfactory/harness) をフォークし、Claude Code の動的 Workflow ツールを適用したプロジェクトです。** Harness が行うすべて — ドメイン記述をエージェントチームとそのチームが使うスキルへ変換（事前定義された 6 種類のチームアーキテクチャパターン） — をそのまま維持しつつ、**第4の実行モード**を追加します：スクリプトがループ・分岐・中間結果を保持する決定的な JS オーケストレーション（`agent()` / `pipeline()` / `parallel()`）。
+>
+> **「ハーネスを構成して」** (日本語) · **"build a harness for this project"** (English) · **"하네스 구성해줘"** (한국어) — 同じトリガーに、いまや動的ワークフローが乗ります。
 
 ## 概要
 
-Harnessは、Claude Codeのエージェントチームシステムを活用し、複雑なタスクを専門エージェントチームに分解・統制するアーキテクチャツールです。「ハーネスを構成して」と伝えるだけで、ドメインに適したエージェント定義（`.claude/agents/`）とスキル（`.claude/skills/`）を自動生成します。
+Dynamic-Harnessは、Claude Codeのエージェントチームシステムを活用して複雑なタスクを専門エージェントチームに分解・統制し、大規模・決定的・再開可能なオーケストレーションのための **Workflow 実行モード** を追加したアーキテクチャツールです。「ハーネスを構成して」と伝えるだけで、ドメインに適したエージェント定義（`.claude/agents/`）とスキル（`.claude/skills/`）を自動生成します。チームアーキテクチャファクトリーの基盤能力は upstream [Harness](https://github.com/revfactory/harness) に由来し、Dynamic-Harness はそこに動的 Workflow ツール（第4の実行モード）を拡張します。
 
-## カテゴリー — Harness はどこに位置するか
+## カテゴリー — Dynamic-Harness はどこに位置するか
 
-Harness は Claude Code エコシステムの **L3 Meta-Factory** 層 — 他のハーネスそのものではなく「他のハーネスを生成する層」 — に位置します。その層の中で、**Team-Architecture Factory** というサブ層を選択します。
+Dynamic-Harness は Claude Code エコシステムの **L3 Meta-Factory** 層 — 他のハーネスそのものではなく「他のハーネスを生成する層」 — に位置します。その層の中で、**Team-Architecture Factory** というサブ層を選択します。
 
 | 層 | 担当領域 | 共存する隣人 |
 |----|----------|--------------|
@@ -38,7 +40,7 @@ Harness は Claude Code エコシステムの **L3 Meta-Factory** 層 — 他の
 | L3 — Meta-Factory / Codex Runtime Port | 同一コンセプトの Codex ランタイム版 | [SaehwanPark/meta-harness](https://github.com/SaehwanPark/meta-harness) |
 | L2 — Cross-Harness Workflow | 複数ハーネスにまたがるスキル・ルール・フックの標準化 | [affaan-m/ECC](https://github.com/affaan-m/everything-claude-code) |
 
-> Archon は決定的なランタイム構成を生成します。Harness はチームアーキテクチャ（パイプライン・ファンアウト/ファンイン・エキスパートプール・プロデューサー-レビューア・スーパーバイザー・階層的委任）と、エージェントが使うスキルを生成します。同じ L3 の異なるサブ層です。ランタイムの決定性が欲しければ Archon、チームアーキテクチャが欲しければ Harness、あるいは両者を組み合わせて利用できます。
+> Archon は決定的なランタイム構成を生成します。Dynamic-Harness はチームアーキテクチャ（パイプライン・ファンアウト/ファンイン・エキスパートプール・プロデューサー-レビューア・スーパーバイザー・階層的委任）と、エージェントが使うスキルを生成し、それらを決定的な Workflow スクリプトとしてオーケストレーションできます。同じ L3 の異なるサブ層です。ランタイムの決定性が欲しければ Archon、チームアーキテクチャが欲しければ Dynamic-Harness、あるいは両者を組み合わせて利用できます。
 
 ## 主な機能
 
@@ -154,7 +156,7 @@ Set up a harness
 
 ## 出力
 
-Harnessが生成するファイル：
+Dynamic-Harnessが生成するファイル：
 
 ```
 your-project/
@@ -173,7 +175,7 @@ your-project/
 
 ## ユースケース — そのまま使えるプロンプト
 
-Harnessインストール後、以下のプロンプトをClaude Codeにコピーしてお使いください：
+Dynamic-Harnessインストール後、以下のプロンプトをClaude Codeにコピーしてお使いください：
 
 **ディープリサーチ**
 ```
@@ -231,23 +233,25 @@ the target market, write ad copy, design visual concepts, and set up
 A/B test plans with iterative quality review.
 ```
 
-## 共存 — Harness と隣人たち
+## 共存 — Dynamic-Harness と隣人たち
 
-Harness は Claude Code / エージェントフレームワークのエコシステムで一人ではありません。以下のリポジトリは隣接する層に位置しており、いずれも「X は ···、Harness は ···」という並列構造で記述されているため、用途に応じて選んだり、複数を組み合わせて利用できます。
+Dynamic-Harness は Claude Code / エージェントフレームワークのエコシステムで一人ではありません。以下のリポジトリは隣接する層に位置しており、いずれも「X は ···、Dynamic-Harness は ···」という並列構造で記述されているため、用途に応じて選んだり、複数を組み合わせて利用できます。（同じポジショニングは upstream Harness にも当てはまり、Dynamic-Harness はその上に構築されています。）
 
-| リポジトリ | 相手のポジション | Harness との関係 |
-|------------|------------------|------------------|
-| [coleam00/Archon](https://github.com/coleam00/Archon) | "harness builder" — 決定的で再現可能なランタイム構成 | **同じ L3、隣のサブ層。** Archon は Runtime-Configuration Factory、Harness は Team-Architecture Factory。ランタイム決定性は Archon、チームアーキテクチャは Harness、または両者の組み合わせ。 |
-| [SaehwanPark/meta-harness](https://github.com/SaehwanPark/meta-harness) | 同一コンセプトの Codex 移植 | **同じ L3、異なるランタイム。** Claude Code では Harness、Codex では meta-harness。 |
-| [affaan-m/ECC](https://github.com/affaan-m/everything-claude-code) | "Agent harness performance & workflow layer" — 既存ハーネスの上に乗る標準化層 | **異なる層。** ECC は複数ハーネスの上の標準化層、Harness はハーネスを生成するファクトリー。直列的に組み合わせ可能。 |
-| [wshobson/agents](https://github.com/wshobson/agents) | サブエージェント / スキルカタログ (182 agents, 149 skills) | **ファクトリー ↔ 部品供給。** wshobson は「ショッピングするカタログ」、Harness は「チーム設計」。Harness が生成したチーム内に wshobson のエントリを部品として取り込み可能。 |
-| [LangGraph](https://langchain-ai.github.io/langgraph/) | ステートグラフ・オーケストレーション、LLM-agnostic | **異なるトラック。** 長時間実行・状態復元が要なら LangGraph、Claude Code ネイティブでの素早いチーム設計が要なら Harness。 |
+| リポジトリ | 相手のポジション | Dynamic-Harness との関係 |
+|------------|------------------|--------------------------|
+| [coleam00/Archon](https://github.com/coleam00/Archon) | "harness builder" — 決定的で再現可能なランタイム構成 | **同じ L3、隣のサブ層。** Archon は Runtime-Configuration Factory、Dynamic-Harness は Team-Architecture Factory。ランタイム決定性は Archon、チームアーキテクチャは Dynamic-Harness、または両者の組み合わせ。 |
+| [SaehwanPark/meta-harness](https://github.com/SaehwanPark/meta-harness) | 同一コンセプトの Codex 移植 | **同じ L3、異なるランタイム。** Claude Code では Dynamic-Harness、Codex では meta-harness。 |
+| [affaan-m/ECC](https://github.com/affaan-m/everything-claude-code) | "Agent harness performance & workflow layer" — 既存ハーネスの上に乗る標準化層 | **異なる層。** ECC は複数ハーネスの上の標準化層、Dynamic-Harness はハーネスを生成するファクトリー。直列的に組み合わせ可能。 |
+| [wshobson/agents](https://github.com/wshobson/agents) | サブエージェント / スキルカタログ (182 agents, 149 skills) | **ファクトリー ↔ 部品供給。** wshobson は「ショッピングするカタログ」、Dynamic-Harness は「チーム設計」。Dynamic-Harness が生成したチーム内に wshobson のエントリを部品として取り込み可能。 |
+| [LangGraph](https://langchain-ai.github.io/langgraph/) | ステートグラフ・オーケストレーション、LLM-agnostic | **収束するトラック。** 長時間実行・状態復元が要なら LangGraph、Claude Code ネイティブでの素早いチーム設計が要なら Dynamic-Harness — そして Workflow モードが決定的・スクリプト駆動のオーケストレーションを加えてギャップを縮めます。 |
 
-## Harnessで構築されたプロジェクト
+## Harness（upstream）で構築されたプロジェクト
+
+> 以下のショーケースと研究結果は **upstream [Harness](https://github.com/revfactory/harness)** で生成・測定されたものです。Dynamic-Harness はこの基盤を継承し、動的 Workflow 実行モードを追加したフォークであり、下記の +60% A/B は **upstream Harness で測定された値**（Dynamic-Harness 自体の測定ではありません）です。
 
 ### Harness 100
 
-**[revfactory/harness-100](https://github.com/revfactory/harness-100)** — 10ドメイン、100のプロダクションレディなエージェントチームハーネス（英韓200パッケージ）。各ハーネスには4〜5名の専門エージェント、オーケストレータースキル、ドメイン特化スキルが含まれており、すべて本プラグインで生成されました。コンテンツ制作、ソフトウェア開発、データ/AI、ビジネス戦略、教育、法律、ヘルスケアなど1,808のMarkdownファイル。
+**[revfactory/harness-100](https://github.com/revfactory/harness-100)** — 10ドメイン、100のプロダクションレディなエージェントチームハーネス（英韓200パッケージ）。各ハーネスには4〜5名の専門エージェント、オーケストレータースキル、ドメイン特化スキルが含まれており、すべて upstream Harness で生成されました。コンテンツ制作、ソフトウェア開発、データ/AI、ビジネス戦略、教育、法律、ヘルスケアなど1,808のMarkdownファイル。
 
 ### 研究：Harness適用前後のA/Bテスト
 
@@ -284,18 +288,18 @@ Harness は Claude Code / エージェントフレームワークのエコシス
 <details>
 <summary><b>Q2. なぜ "harness builder" ではなく "harness factory" なのですか？ Archon と競合しませんか？</b></summary>
 
-**A.** Archon は決定的なランタイム構成を生成する **Runtime-Configuration Factory** であり、Harness はエージェントチームアーキテクチャ（チーム構造・メッセージプロトコル・レビューゲート）を生成する **Team-Architecture Factory** です。両者は **同じ L3 Meta-Factory 層の隣接するサブ層** で、用途が異なります。決定的なランタイムが必要なら Archon、6 つのチームアーキテクチャパターンの事前定義が必要なら Harness。両者を組み合わせる（アーキテクチャ設計 → ランタイム配置）ことも可能です。
+**A.** Archon は決定的なランタイム構成を生成する **Runtime-Configuration Factory** であり、Dynamic-Harness はエージェントチームアーキテクチャ（チーム構造・メッセージプロトコル・レビューゲート）を生成する **Team-Architecture Factory** で、それらを決定的な Workflow スクリプトとしてオーケストレーションできます。両者は **同じ L3 Meta-Factory 層の隣接するサブ層** で、用途が異なります。決定的なランタイムが必要なら Archon、6 つのチームアーキテクチャパターンの事前定義が必要なら Dynamic-Harness。両者を組み合わせる（アーキテクチャ設計 → ランタイム配置）ことも可能です。
 
 **Evidence:**
 - Archon 自己定義: [clawfit docs/reference-levels.md](https://github.com/hongsw/clawfit/blob/main/docs/reference-levels.md)
-- サブ層宣言: 本 README の **カテゴリー — Harness はどこに位置するか** セクション
+- サブ層宣言: 本 README の **カテゴリー — Dynamic-Harness はどこに位置するか** セクション
 - Archon リポジトリ: [github.com/coleam00/Archon](https://github.com/coleam00/Archon)
 </details>
 
 <details>
 <summary><b>Q3. 「Claude Code 専用」は狭すぎませんか？ Gemini・Codex は？</b></summary>
 
-**A.** 現時点で公式のランタイムは Claude Code のみです。同一コンセプトの Codex 移植 [SaehwanPark/meta-harness](https://github.com/SaehwanPark/meta-harness) がすでに公開されており、既存の Codex チームはそちらから開始できます。Harness は「Claude Code ネイティブ・深く」を選択しており、クロスランタイムの需要は共存リポジトリ（meta-harness、harness-init、OpenRig）との連携計画としてロードマップに反映される予定です。
+**A.** 現時点で公式のランタイムは Claude Code のみです。同一コンセプトの Codex 移植 [SaehwanPark/meta-harness](https://github.com/SaehwanPark/meta-harness) がすでに公開されており、既存の Codex チームはそちらから開始できます。Dynamic-Harness は（upstream Harness と同様に）「Claude Code ネイティブ・深く」を選択しており（Workflow 実行モードも Claude Code ネイティブ機能）、クロスランタイムの需要は共存リポジトリ（meta-harness、harness-init、OpenRig）との連携計画としてロードマップに反映される予定です。
 
 **Evidence:**
 - Codex 移植: [github.com/SaehwanPark/meta-harness](https://github.com/SaehwanPark/meta-harness)
