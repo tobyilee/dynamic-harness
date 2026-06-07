@@ -29,17 +29,11 @@ e0a64fc  feat: workflow-mode.md + SKILL.md 통합
 
 ## 2. 다음 작업 (우선순위)
 
-### 🔴 P0 — repo 정체성 불일치 (런치 전 필수, 파일럿이 발견·검증)
-remote는 `tobyilee/dynamic-harness`인데 README는 전부 `revfactory/harness`를 가리킴.
-- **결정 필요:** 어느 쪽이 canonical인가? (이 fork가 집이면 전부 `tobyilee/dynamic-harness`로 정렬 / `revfactory/harness`가 upstream이면 단순 fork로 두고 조치 없음)
-- **대상:** `README.md`(배지 11, star-history 47-49, install 84), `README_KO.md`, `README_JA.md`, `.claude-plugin/marketplace.json`, `.claude-plugin/plugin.json`(homepage/repository)
-- **상세 체크리스트:** `_workspace/pilot_workflow/04_strategist_launch_plan.md` §1 P0-1~P0-4
-- **검증:** `grep -rn "revfactory/harness"` → 0 hit (정렬 완료 시)
+### ✅ P0 — repo 정체성 정렬 (완료: dynamic-harness로 리브랜드)
+식별 링크(README 배지·star-history·install, `plugin.json` homepage/repository, docs·index.html·privacy·이슈템플릿·CONTRIBUTING discussions)를 `revfactory/harness` → **`tobyilee/dynamic-harness`**로 통일. 원저자 attribution(author·marketplace owner·논문·형제 저장소)은 Apache 2.0에 따라 보존. `git grep "revfactory/harness"` → 형제(`harness-100`/`claude-code-harness`)·attribution·_workspace 증거만 남음.
 
-### 🟠 P1 — 1.3.0 릴리스 끊기
-`CHANGELOG.md` `[Unreleased]`에 워크플로우 모드 + 모델 티어링 + F1-F6가 누적됨 → **`## [1.3.0] - <날짜>` 섹션으로 승격**.
-- 버전 정합: `plugin.json`(현재 1.2.0) / `marketplace.json`(1.2.0) / README 배지 3종 → 1.3.0
-- 태그 + GH release (`experimental-dependency.md` Scenario A가 권하는 패턴; 현재 태그드 릴리스 0건)
+### ✅ P1 — 1.3.0 릴리스 (완료)
+`CHANGELOG.md` `[Unreleased]` → `[1.3.0] - 2026-06-07` 승격. `plugin.json`/`marketplace.json` `1.2.0`→`1.3.0`, README 배지 3종 정합. `git tag v1.3.0` + GitHub Release 발행 (태그드 릴리스 0건 상태 해소).
 
 ### 🟡 P2 — 실측 A/B (리서치가 못 푼 핵심 질문)
 "agent-teams vs 워크플로우 모드, 같은 도메인에서 실제 비용/품질 델타는?" — **측정 없이는 답 못 함.**

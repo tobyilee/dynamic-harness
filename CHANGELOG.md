@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-06-07
+
 ### Added
 - **Phase 2-1: 워크플로우 실행 모드 (4번째 모드)** — Claude Code **Workflow 도구** 기반 결정적 오케스트레이션. 팀/서브/하이브리드(모두 모델 주도)와 달리 JS 스크립트가 제어 흐름(루프·분기·중간결과)을 보유. 수십~수백 에이전트 팬아웃·결정적 시퀀스·반복 실행·같은 세션 재개에 사용 (Workflow 도구는 **research preview**, v2.1.154+ — 생성 템플릿은 버전 게이팅 + 팀/하이브리드 폴백)
 - **`references/workflow-mode.md`** — 워크플로우 모드 가이드 (신규, ToC 포함): 모드 선택 루브릭(규모·반복성·재개), 프리미티브(`agent`/`pipeline`/`parallel`/`phase`/`schema`/`budget` + 캡·제약), 6패턴↔프리미티브 매핑, **Template D**(오케스트레이터 스킬 + 번들 스크립트), 품질 패턴(어드버서리얼 검증·loop-until-dry), 모델 티어링·토큰 예산, `_workspace/` 감사추적 유지법, 한계
@@ -19,6 +21,8 @@
 - `references/skill-writing-guide.md` §9 "스킬 재사용 설계"
 
 ### Changed
+- **저장소 정체성 정렬 (rebrand)** — README(EN/KO/JA) 배지·star-history·install 명령, `plugin.json` homepage/repository, `docs/quickstart.md`, `index.html`, `privacy.html`, 이슈 템플릿·CONTRIBUTING의 discussions 링크를 `revfactory/harness` → **`tobyilee/dynamic-harness`**로 통일. 원저자 attribution(author·marketplace owner·논문·형제 저장소 `harness-100`/`claude-code-harness`)은 Apache 2.0에 따라 보존
+- **버전 1.3.0** — `plugin.json`/`marketplace.json` `1.2.0` → `1.3.0`, README 배지 3종 동일 정합
 - **Phase 2-1 실행 모드 의사결정 순서** — 규모·반복성 체크를 1순위로 전환(대규모 팬아웃·반복·재개는 워크플로우 우선). "에이전트 팀이 최우선 기본값"을 **소규모 협업**으로 한정 — 팀은 "세션당 1팀·토큰 선형 증가" 제약으로 대규모 팬아웃에 부적합
 - **모델 설정 정책 완화** — `model: "opus"` 전면 강제 → **핵심 단계 opus + 단순·기계적 단계 하위 티어 허용**. 멀티 에이전트 토큰 비용(chat 대비 ~15배)을 고가치 단계에 집중. 티어 완화는 **비용 근거로만** 결정하고 품질 영향은 Phase 6-3 With/Without A/B로 도메인별 검증한 뒤 적용 (혼합 티어 품질 향상 주장은 검증에서 폐기되어 미인용)
 - **산출물 체크리스트** — 실행 모드 항목에 워크플로우 추가(폴백 경로 명시), 모델 항목을 티어 설정으로 갱신

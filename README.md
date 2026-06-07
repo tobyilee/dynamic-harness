@@ -3,12 +3,12 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-1.2.0-brightgreen.svg" alt="Version">
+  <img src="https://img.shields.io/badge/Version-1.3.0-brightgreen.svg" alt="Version">
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License"></a>
   <img src="https://img.shields.io/badge/Claude_Code-Plugin-purple.svg" alt="Claude Code Plugin">
   <img src="https://img.shields.io/badge/Patterns-6_Architectures-orange.svg" alt="6 Architecture Patterns">
   <img src="https://img.shields.io/badge/Mode-Agent_Teams-green.svg" alt="Agent Teams">
-  <a href="https://github.com/revfactory/harness/stargazers"><img src="https://img.shields.io/github/stars/revfactory/harness?style=social" alt="GitHub Stars"></a>
+  <a href="https://github.com/tobyilee/dynamic-harness/stargazers"><img src="https://img.shields.io/github/stars/tobyilee/dynamic-harness?style=social" alt="GitHub Stars"></a>
 </p>
 
 <p align="center">
@@ -44,9 +44,9 @@ Harness lives at the **L3 Meta-Factory** layer of the Claude Code ecosystem — 
 
 <a href="https://www.star-history.com/?repos=revfactory%2Fharness&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=revfactory/harness&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=revfactory/harness&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=revfactory/harness&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=tobyilee/dynamic-harness&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=tobyilee/dynamic-harness&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=tobyilee/dynamic-harness&type=date&legend=top-left" />
  </picture>
 </a>
 
@@ -81,7 +81,7 @@ Phase 6: Validation & Testing
 
 #### Add the marketplace
 ```shell
-/plugin marketplace add revfactory/harness
+/plugin marketplace add tobyilee/dynamic-harness
 ```
 
 #### Install the plugin

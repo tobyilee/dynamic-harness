@@ -16,12 +16,12 @@
 ## Step 1 — Add the marketplace (60 seconds)
 
 ```bash
-claude plugin marketplace add revfactory/harness
+claude plugin marketplace add tobyilee/dynamic-harness
 ```
 
 **What this does:** Registers the `harness` marketplace so Claude Code can discover plugins published by `revfactory`.
 
-**Expected output:** `Added marketplace: revfactory/harness`
+**Expected output:** `Added marketplace: tobyilee/dynamic-harness`
 
 ---
 

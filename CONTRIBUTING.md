@@ -39,7 +39,7 @@ Different kinds of contributions go through different entry points. Pick the one
 
 ### Question
 
-- Open an issue using the **Question** form, **or** start a thread in [GitHub Discussions](https://github.com/revfactory/harness/discussions) if the matter is open-ended.
+- Open an issue using the **Question** form, **or** start a thread in [GitHub Discussions](https://github.com/tobyilee/dynamic-harness/discussions) if the matter is open-ended.
 
 ### Discussion (RFC-sized ideas)
 
