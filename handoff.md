@@ -35,11 +35,11 @@ e0a64fc  feat: workflow-mode.md + SKILL.md 통합
 ### ✅ P1 — 1.3.0 릴리스 (완료)
 `CHANGELOG.md` `[Unreleased]` → `[1.3.0] - 2026-06-07` 승격. `plugin.json`/`marketplace.json` `1.2.0`→`1.3.0`, README 배지 3종 정합. `git tag v1.3.0` + GitHub Release 발행 (태그드 릴리스 0건 상태 해소).
 
-### 🟡 P2 — 실측 A/B (리서치가 못 푼 핵심 질문)
-"agent-teams vs 워크플로우 모드, 같은 도메인에서 실제 비용/품질 델타는?" — **측정 없이는 답 못 함.**
-- 현재 데이터: 투영치 + 파일럿 1점(168K tokens / 3m17s, n=1). 분산 미측정.
-- 방법: Harness 자체 With/Without eval 하네스(`SKILL.md` 6-3, `skill-testing-guide.md` §9)로 두 모드를 비교.
-- 선행: 아래 P3(§9를 실행 가능 스크립트로) 하면 측정 도구가 생김.
+### 🟡 P2 — agent-teams vs workflow 모드 A/B (방법론 + 부분 데이터 전달; 완전 실측 보류)
+정직한 통제 A/B는 **텔레메트리 비대칭**(Workflow는 usage 네이티브 반환, agent-teams는 per-run 합산 미제공 → 세션 usage 외부 회계 필요) + experimental 플래그 + 분산(N≥3) 때문에 단발 실행으로는 오해를 부른다.
+- **전달:** `_workspace/P2-mode-ab-analysis.md` — 차단 원인, 보유 실측(workflow 2점: 168K/197s·282K/34s), 문서화된 특성, 통제 A/B 절차.
+- **방향성(근거 O):** 대규모 팬아웃·결정적·반복 작업에서 workflow 우위(컨텍스트 격리 + 선형 비용 회피).
+- **정량(미측정):** 특정 작업의 % 델타는 플래그 켠 별도 세션 + 세션 usage diffing + N≥3 필요. (이번 P3 eval 하네스의 with/baseline 채점 패턴은 재사용 가능하나 "모드 비교"는 별도 셋업.)
 
 ### ✅ P3 — §9 eval 하네스 실행 스크립트화 (완료, F1 후속)
 `_workspace/eval_pilot/eval-workflow.js`로 구현·실행됨(2-suite, 16 agents / 282K tokens / ~34s).
