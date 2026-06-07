@@ -21,6 +21,7 @@ e0a64fc  feat: workflow-mode.md + SKILL.md 통합
 - `SKILL.md` 2-1 모드 표에 워크플로우 행 + 규모 우선 의사결정 / `:93` opus 전면강제 → 단계별 티어링 / 6-2 검증 항목.
 - `skill-testing-guide.md` §9 — 워크플로우 eval 하네스. `skill-writing-guide.md` §7-4, `qa-agent-guide.md` §3-5, `team-examples.md` 예시 1·3·5 변형.
 - `_workspace/pilot_workflow/` — 실제로 돌린 파일럿(스크립트 + 4 산출물). Template D 작동·실측 증거.
+- `_workspace/eval_pilot/` — §9 eval 하네스 실행 구현(`eval-workflow.js`, 2-suite) + 스킬 2종 + 결과. 스킬 with/baseline 측정 시연(P3).
 
 **딥 리뷰 findings 상태:** F1·F2·F3·F4·F5·F6 **전부 반영 완료.**
 
@@ -46,8 +47,11 @@ remote는 `tobyilee/dynamic-harness`인데 README는 전부 `revfactory/harness`
 - 방법: Harness 자체 With/Without eval 하네스(`SKILL.md` 6-3, `skill-testing-guide.md` §9)로 두 모드를 비교.
 - 선행: 아래 P3(§9를 실행 가능 스크립트로) 하면 측정 도구가 생김.
 
-### 🟡 P3 — §9 eval 하네스를 실행 가능 스크립트로 (F1 후속)
-F1은 현재 **문서(스케치)만**. 실제 `scripts/eval-workflow.js`로 구현하면 P2 측정에 바로 사용. `pipeline(prompts, with/baseline parallel → Grader → Comparator)` + `schema` + `budget`.
+### ✅ P3 — §9 eval 하네스 실행 스크립트화 (완료, F1 후속)
+`_workspace/eval_pilot/eval-workflow.js`로 구현·실행됨(2-suite, 16 agents / 282K tokens / ~34s).
+- 결과: 비차별 eval(Conventional Commits) **lift=0**, 차별 eval(커스텀 `[ABC-n]` 티켓 프리픽스) **lift=+0.5** → 하네스가 스킬 가치를 실제로 측정함을 시연(§4-3 non-discriminating 함정 → 해결).
+- `pipeline(tasks, with/baseline parallel → schema grade)` + JS 결정적 win-rate. 보안: name/iter strict allowlist로 path traversal 차단.
+- **P2(실측 A/B)의 도구로 재사용 가능** — 단, P2는 "agent-teams vs workflow 모드" 비교라 별도 셋업 필요(이 하네스는 "스킬 with/baseline" 패턴).
 
 ### ⚪ P4 — 정리·확산 (선택)
 - `_workspace/pilot_workflow/` 유지 vs 정리 결정 (현재 증거로 커밋됨).
