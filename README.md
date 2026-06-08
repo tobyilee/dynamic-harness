@@ -88,14 +88,14 @@ Phase 6: Validation & Testing
 
 #### Install the plugin
 ```shell
-/plugin install harness@harness-marketplace
+/plugin install dynamic-harness@dynamic-harness-marketplace
 ```
 
 ### Direct Installation as Global Skill
 
 ```shell
-# Copy the skills directory to ~/.claude/skills/harness/
-cp -r skills/harness ~/.claude/skills/harness
+# Copy the skills directory to ~/.claude/skills/dynamic-harness/
+cp -r skills/dynamic-harness ~/.claude/skills/dynamic-harness
 ```
 
 ## Plugin Structure

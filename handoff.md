@@ -9,7 +9,7 @@
 ## 1. 이번 세션에 완료한 것 (전부 origin/main에 푸시됨)
 
 ### dynamic workflow 통합 (4번째 실행 모드)
-- `skills/harness/references/workflow-mode.md` — **워크플로우 모드 SSOT** (프리미티브·6패턴↔프리미티브 매핑·Template D·모델 티어링·예산·재개·한계).
+- `skills/dynamic-harness/references/workflow-mode.md` — **워크플로우 모드 SSOT** (프리미티브·6패턴↔프리미티브 매핑·Template D·모델 티어링·예산·재개·한계).
 - `SKILL.md` — 2-1 모드 표에 워크플로우 행 + 규모 우선 의사결정 / `:93` opus 전면강제 → **비용 근거 단계별 티어링** / 6-2 워크플로우 검증.
 - `orchestrator-template.md` Template D 포인터.
 
@@ -53,7 +53,7 @@ ca046b2 docs(P2): agent-teams vs workflow A/B — methodology + partial data
 
 ### 🟠 잔여 리브랜드 일관성
 - **`index.html`(41) / `privacy.html`(14)** — 슬러그는 P0에서 바뀌었으나 **프로젝트명 narrative가 아직 "Harness"**. README와 맞추려면 Dynamic-Harness로 narrative 리브랜드 필요(랜딩/프라이버시 페이지). upstream 참조(논문·harness-100·연구)는 README와 동일 기준으로 보존.
-- `skills/harness/references/workflow-mode.md` 예시 주석의 `repo: "revfactory/harness"` (illustrative arg, 무해하나 정리 가능).
+- `skills/dynamic-harness/references/workflow-mode.md` 예시 주석의 `repo: "revfactory/harness"` (illustrative arg, 무해하나 정리 가능).
 
 ### 🟢 릴리스 후속
 - `CHANGELOG.md` `[Unreleased]`에 README 리브랜드 + 모드표 동기화 누적 → 적절한 시점에 **v1.3.1**로 끊기.
@@ -65,7 +65,7 @@ ca046b2 docs(P2): agent-teams vs workflow A/B — methodology + partial data
 ---
 
 ## 3. 핵심 포인터
-- **워크플로우 모드 SSOT:** `skills/harness/references/workflow-mode.md`
+- **워크플로우 모드 SSOT:** `skills/dynamic-harness/references/workflow-mode.md`
 - **파일럿 재실행:** `Workflow({scriptPath: "_workspace/eval_pilot/eval-workflow.js"})` (자기완결형, args 불필요) / launch는 `args:{repo, goalDate}` 필요.
 - **리서치 근거:** deep-research 1회(19 소스→25 검증→23 확정). 결론은 `workflow-mode.md` + 커밋 메시지에 반영(원본 temp 출력은 비영속).
 

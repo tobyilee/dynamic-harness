@@ -91,14 +91,14 @@ Phase 6: 検証とテスト
 
 #### プラグインのインストール
 ```shell
-/plugin install harness-marketplace
+/plugin install dynamic-harness@dynamic-harness-marketplace
 ```
 
 ### グローバルスキルとして直接インストール
 
 ```shell
-# skillsディレクトリを ~/.claude/skills/harness/ にコピー
-cp -r skills/harness ~/.claude/skills/harness
+# skillsディレクトリを ~/.claude/skills/dynamic-harness/ にコピー
+cp -r skills/dynamic-harness ~/.claude/skills/dynamic-harness
 ```
 
 ## プラグイン構成

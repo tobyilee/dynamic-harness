@@ -91,14 +91,14 @@ Phase 6: 검증 및 테스트
 
 #### 플러그인 설치
 ```shell
-/plugin install harness-marketplace
+/plugin install dynamic-harness@dynamic-harness-marketplace
 ```
 
 ### 글로벌 스킬로 직접 설치
 
 ```shell
-# skills 디렉토리를 ~/.claude/skills/harness/에 복사
-cp -r skills/harness ~/.claude/skills/harness
+# skills 디렉토리를 ~/.claude/skills/dynamic-harness/에 복사
+cp -r skills/dynamic-harness ~/.claude/skills/dynamic-harness
 ```
 
 ## 플러그인 구조
